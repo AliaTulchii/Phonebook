@@ -4,7 +4,7 @@ import Form from './Form/Form';
 import Filter from './Filter/Filter';
 import css from './App.module.css'
 import ContactList from './ContactsList/ContactList';
-import { fetchContacts } from 'features/contact/contactSlice';
+import { fetchContacts } from 'features/operations/operations';
 import { getError, getIsLoading } from 'features/selectors/selectors';
 
 

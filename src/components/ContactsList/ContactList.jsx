@@ -7,14 +7,14 @@ import getFilter from 'features/filter/getFilter';
 
 
 const ContactList = () => {
-    const {items} = useSelector(getContact);
+    const items = useSelector(getContact);
     const filter = useSelector(getFilter);
 
-    const getFiltered = () => {
+  const getFiltered = () => {
+    const normalizedFilter = filter.toLowerCase();
         if (!filter) {
             return items;
-          }
-          const normalizedFilter = filter.toLowerCase();
+          }          
           const filteredContacts = items.filter(
             ({ name, number }) =>
               name.toLowerCase().trim().includes(normalizedFilter) ||
@@ -36,10 +36,12 @@ const ContactList = () => {
 
     return (
         <ul>
-            {filtered.map((contact) => (
+            {filtered?.map(({ id, name, number, avatar }) => (
             <ContactListItem
-              key={contact.id}
-              contact={contact}
+              key={id}
+                name={name}
+                number={number}
+                avatar={avatar}
           />))}
         </ul>
     )

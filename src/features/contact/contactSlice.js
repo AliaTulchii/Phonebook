@@ -1,22 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-import axios from "axios";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addContacts, deleteContact } from "features/operations/operations";
+import { addContacts, deleteContact, fetchContacts } from "features/operations/operations";
 
-axios.defaults.baseURL = "https://62584f320c918296a49543e7.mockapi.io";
-
-export const fetchContacts = createAsyncThunk(
-    "contacts/fetchAll",
-    async (_, thunkAPI) => {
-        try {
-            const response = await axios.get("/contacts");
-            
-            return response.data;
-        } catch (error) {
-            
-            return thunkAPI.rejectWithValue(error.message);
-        }
-});
 
 
 
@@ -26,7 +10,7 @@ export const contactSlice = createSlice({
         items: [],
         isLoading: false,
         error: null,
-      },
+    },
     
     extraReducers: {
         [fetchContacts.pending](state) {
@@ -76,4 +60,4 @@ export const contactSlice = createSlice({
 })
 
 
-export const contactReducers = contactSlice.reducer
+export const contactsReducers = contactSlice.reducer

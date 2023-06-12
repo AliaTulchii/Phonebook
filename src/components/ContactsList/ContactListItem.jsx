@@ -6,22 +6,22 @@ import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'features/operations/operations';
 
-const ContactListItem = ({ contact }) => {
+const ContactListItem = ({id, name, number, avatar }) => {
     const dispatch = useDispatch();
 
     const deleteContactHandler = () => {
-        dispatch(deleteContact(contact.id));
+        dispatch(deleteContact(id));
     }
 
     return (
         <li 
             className={css.ContactsList__item}>     
-            <img src={contact.avatar || person} alt={contact.name} className={ css.ContactList__img } />
-            <p className={css.ContactsList__text}>{contact.name}</p>
-                <p className={css.ContactsList__textWhite}>{contact.number}</p>
+            <img src={avatar || person} alt={name} className={ css.ContactList__img } />
+            <p className={css.ContactsList__text}>{name}</p>
+                <p className={css.ContactsList__textWhite}>{number}</p>
                 <button
                     className={css.ContactsList__button}
-                    onClick={()=>deleteContactHandler(contact.id)}
+                    onClick={()=>deleteContactHandler(id)}
                 ><FaTrashAlt /></button>
             </li>)
    
