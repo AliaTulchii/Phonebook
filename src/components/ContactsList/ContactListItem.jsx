@@ -4,19 +4,19 @@ import { FaTrashAlt } from 'react-icons/fa'
 import person from './person.png'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux';
-import { removeContact } from 'features/contact/contactSlice';
+import { deleteContact } from 'features/operations/operations';
 
 const ContactListItem = ({ contact }) => {
     const dispatch = useDispatch();
 
-    const deleteContactHandler = (id) => {
-        dispatch(removeContact(id))
+    const deleteContactHandler = () => {
+        dispatch(deleteContact(contact.id));
     }
 
     return (
         <li 
             className={css.ContactsList__item}>     
-            <img src={person} alt={contact.name} className={ css.ContactList__img } />
+            <img src={contact.avatar || person} alt={contact.name} className={ css.ContactList__img } />
             <p className={css.ContactsList__text}>{contact.name}</p>
                 <p className={css.ContactsList__textWhite}>{contact.number}</p>
                 <button

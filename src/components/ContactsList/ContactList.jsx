@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import ContactListItem from './ContactListItem';
-import getContact from 'features/contact/getContact';
+import { getContact } from 'features/selectors/selectors';
 import { useSelector } from 'react-redux';
 import getFilter from 'features/filter/getFilter';
 
