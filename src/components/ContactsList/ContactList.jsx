@@ -7,15 +7,15 @@ import getFilter from 'features/filter/getFilter';
 
 
 const ContactList = () => {
-    const contacts = useSelector(getContact);
+    const {items} = useSelector(getContact);
     const filter = useSelector(getFilter);
 
     const getFiltered = () => {
         if (!filter) {
-            return contacts;
+            return items;
           }
           const normalizedFilter = filter.toLowerCase();
-          const filteredContacts = contacts.filter(
+          const filteredContacts = items.filter(
             ({ name, number }) =>
               name.toLowerCase().trim().includes(normalizedFilter) ||
               number.trim().includes(normalizedFilter)
@@ -32,7 +32,7 @@ const ContactList = () => {
     const filtered = getFiltered();
     
 
-    if (contacts.length === 0) return null
+    // if (items.length === 0) return null
 
     return (
         <ul>
