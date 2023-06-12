@@ -7,36 +7,23 @@ import getFilter from 'features/filter/getFilter';
 
 
 const ContactList = () => {
-    const items = useSelector(getContact);
-    const filter = useSelector(getFilter);
+  const items = useSelector(getContact);
+  const filter = useSelector(getFilter);
 
-  const getFiltered = () => {
-    const normalizedFilter = filter.toLowerCase();
-        if (!filter) {
-            return items;
-          }          
-          const filteredContacts = items.filter(
-            ({ name, number }) =>
-              name.toLowerCase().trim().includes(normalizedFilter) ||
-              number.trim().includes(normalizedFilter)
-          );
-        
-          if (normalizedFilter && !filteredContacts.length) {
-            alert(`No contacts matching your request`);
-          }
-          return filteredContacts;
-    }
-        
-        
+  console.log(items);
+  
+  const normalizedFilter = filter.toLowerCase();
+  const filteredContacts = items.filter(
     
-    const filtered = getFiltered();
-    
+    ({ name, number }) =>
+      name.toLowerCase().trim().includes(normalizedFilter) ||
+      number.trim().includes(normalizedFilter))
 
-    // if (items.length === 0) return null
+  
 
     return (
         <ul>
-            {filtered?.map(({ id, name, number, avatar }) => (
+            {filteredContacts?.map(({ id, name, number, avatar }) => (
             <ContactListItem
               key={id}
                 name={name}
